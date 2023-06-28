@@ -1,0 +1,35 @@
+<div class="container" *ngIf="movie">
+
+  <div class="mt-5 row">
+
+    <div class="col-2">
+      <img class="img-fluid" src={{movie.url}} alt="image">
+    </div>
+
+    <div class="col-10">
+      <h1 class="h1">{{movie.name}}</h1>
+      <div class="col">
+        <p>{{movie.description}}</p>
+
+        <div>
+
+          <div class="d-flex">
+            <span class="me-2">Director: </span>
+            <p class="me-2" >{{movie.director.names}}</p>
+          </div>
+          
+          <div class="d-flex">
+            <span class="me-2">Actores: </span>
+            <p class="me-2" *ngFor="let actor of movie.actors">{{actor.names}}</p>
+          </div>
+          
+        </div>
+        <div>
+          <button class="btn btn-outline-info btn-sm me-3" *ngFor="let genre of movie.genres">{{genre.name}}</button>
+        </div>
+        
+      </div>
+     
+    </div>
+  </div>
+</div>

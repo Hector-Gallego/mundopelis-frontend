@@ -1,0 +1,26 @@
+<div class="container" id="search-component">
+  <div class="row justify-content-center mt-5 mb-3">
+    <div class="col-8">
+      <div class="input-group">
+        <input list="movies" #searchBox id="search-box" (input)="search(searchBox.value)" type="text" class="form-control" placeholder="Buscar Película" aria-label="Recipient's username" aria-describedby="button-addon2">
+        <span class="input-group-text"><i class="fas fa-search"></i></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-8">
+      <div class="overflow-auto" style="max-height: 200px;">
+        <ul class="list-group">
+          <li class="list-group" *ngFor="let movie of movies$ | async">
+            <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" routerLink="/detail/{{movie.id}}">
+              {{movie.name}}
+              <img src="{{movie.url}}" class="img-thumbnail" alt="Miniatura" style="width: 70px; height: 100px; object-fit: cover;">
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+

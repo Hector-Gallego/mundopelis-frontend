@@ -1,0 +1,81 @@
+<div class="container mt-5 mb-5 pb-5">
+  <div>
+    <h3>Formulario Peliculas</h3>
+  </div>
+  <form novalidate (ngSubmit)="addMovie()" #f ="ngForm" >
+    <div class="mb-3">
+      <label for="name" class="form-label">Nombre</label>
+      <input [(ngModel)]="movie.name" type="text" class="form-control" id="name" name="name" required>
+    </div>
+
+    <div class="mb-3">
+
+
+      <div class="mb-3">
+        <label for="url" class="form-label">Url</label>
+        <input required [(ngModel)]="url" type="text" class="form-control" name="url" id="url" aria-describedby="emailHelp">
+      </div>
+      <div>
+        <img src={{url}} alt="">
+      </div>
+
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">Descripción</label>
+
+
+      <textarea  required [(ngModel)]="movie.description" class="form-control" id="description" rows="3"
+        name="description"></textarea>
+
+
+    </div>
+
+    <div class="mb-3">
+      <div>
+        <label for="genres" class="form-label">Generos</label>
+        <select required class="form-control" id="genres" name="genres" multiple>
+          <option *ngFor="let genre of genres" [value]="genre.id" (dblclick)="selectGenre(genre)">{{genre.name}}
+          </option>
+        </select>
+      </div>
+
+      <div>
+        <div class="container d-flex mt-3 ms-0 p-0">
+          <p class="btn btn-outline-info me-3" *ngFor="let genre of selectedGenres">{{ genre.name }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <div>
+        <label for="actors" class="form-label">Actores</label>
+        <select required class="form-control" id="actors" name="actors" multiple>
+          <option *ngFor="let actor of actors" [value]="actor.id" (dblclick)="selectActor(actor)">{{actor.names}}
+          </option>
+        </select>
+      </div>
+
+      <div class="container d-flex mt-3 ms-0 p-0">
+        <p class="btn btn-outline-info me-3" *ngFor="let actor of selectedActors">{{ actor.names }}</p>
+      </div>
+
+
+      <div class="mb-3">
+        <label for="director" class="form-label">Director</label>
+        <select required class="form-select" id="director" name="director" name="director" [(ngModel)]="movie.director">
+          <option *ngFor="let director of directors" [ngValue]="director">{{director.names}}
+          </option>
+        </select>
+        <div class="container d-flex mt-3 ms-0 p-0">
+          <p *ngIf="movie?.director" class="btn btn-outline-info me-3">{{movie.director.names}}</p>
+        </div>
+       
+      </div>
+
+    </div>
+
+    <button [disabled]="f.invalid" type="submit" class="btn btn-primary">Confirmar</button>
+  </form>
+
+</div>

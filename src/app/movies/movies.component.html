@@ -1,0 +1,21 @@
+
+
+
+<app-movie-serach></app-movie-serach>
+
+<div class=" container d-flex flex-wrap justify-content-around pb-5">
+
+  <div *ngFor="let movie of movies" class="card mt-5 " style="width: 18rem;">
+    <img
+      src={{movie.url}}
+      class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{movie.name}}</h5>
+      <p class="card-text">{{movie.description | truncate: 100 }}</p>
+    </div>
+    <div class="card-body">
+      <button routerLink="/detail/{{movie.id}}" class="btn btn-dark col-md-12">Detalles</button>
+    </div>
+  </div>
+
+</div>

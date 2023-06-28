@@ -1,0 +1,28 @@
+<div class=" container mt-5 ">
+
+    <div class="mb-5">
+        <button class="btn btn-dark" routerLink="/form/pelis">Agregar Pelicula<i class="ms-2 fas fa-plus"></i></button>
+    </div>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">name</th>
+            <th scope="col">Editar</th>
+            <th scope="col">Eliminar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let movie of movies">
+            <th scope="row">{{movie.id}}</th>
+            <td>{{movie.name}}</td>
+            <td><button class="btn btn-primary" routerLink="/form/pelis/edit/{{movie.id}}" type="button">Editar<i class="ms-2 fas fa-edit"></i></button></td>
+            <td><button class="btn btn-danger" (click)="deleteMovie(movie)" type="button">Eliminar<i class="ms-2 fas fa-trash"></i></button></td>
+          </tr>
+        </tbody>
+      </table>
+
+</div>
+
+
+
