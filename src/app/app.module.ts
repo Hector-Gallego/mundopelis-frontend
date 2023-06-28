@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { MoviesComponent } from './movies/movies.component';
 import { FormsModule } from '@angular/forms';
 import { MovieDetailComponent } from './movie-detail/movie-detail.component';
-import { MessagesComponent } from './messages/messages.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './header/header.component';
@@ -22,7 +21,6 @@ import { MovieSerachComponent } from './movie-serach/movie-serach.component';
     AppComponent,
     MoviesComponent,
     MovieDetailComponent,
-    MessagesComponent,
     HeaderComponent,
     TruncatePipe,
     AdminPelisComponent,

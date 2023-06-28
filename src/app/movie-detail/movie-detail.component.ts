@@ -31,15 +31,4 @@ export class MovieDetailComponent {
   }
   
 
-  goBack(): void {
-    this.location.back();
-  }
-
- 
-
-  /*
-  @Input() movie?: Movie;
-  */
-  
-
 }

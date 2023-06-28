@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { Movie } from '../model/movie';
 import { MovieService } from '../services/movie.service';
-import { MessageService } from '../services/message.service';
-
 
 
 @Component({
@@ -12,7 +10,7 @@ import { MessageService } from '../services/message.service';
 })
 export class MoviesComponent {
 
-  constructor(private movieService:MovieService, private messageService: MessageService){}
+  constructor(private movieService:MovieService){}
 
   movies : Movie[] = [];
 
