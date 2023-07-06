@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MoviesComponent } from './movies/movies.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,6 +13,8 @@ import { TruncatePipe } from './truncate.pipe';
 import { AdminPelisComponent } from './admin-pelis/admin-pelis.component';
 import { FormPelisComponent } from './form-pelis/form-pelis.component';
 import { MovieSerachComponent } from './movie-serach/movie-serach.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ToastComponent } from './toast/toast.component';
 
 
 
@@ -26,6 +28,7 @@ import { MovieSerachComponent } from './movie-serach/movie-serach.component';
     AdminPelisComponent,
     FormPelisComponent,
     MovieSerachComponent,
+    ToastComponent,
    
    
   ],
@@ -35,6 +38,8 @@ import { MovieSerachComponent } from './movie-serach/movie-serach.component';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    NgbModule,
+    ReactiveFormsModule
   
   ],
   providers: [],

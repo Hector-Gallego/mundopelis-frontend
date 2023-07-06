@@ -2,42 +2,56 @@
   <div>
     <h3>Formulario Peliculas</h3>
   </div>
-  <form novalidate (ngSubmit)="addMovie()" #f ="ngForm" >
+  <form novalidate class="needs-validation" (ngSubmit)="addMovie()" [formGroup]="registerForm">
+
     <div class="mb-3">
       <label for="name" class="form-label">Nombre</label>
-      <input [(ngModel)]="movie.name" type="text" class="form-control" id="name" name="name" required>
+      <input formControlName="name" [ngClass]="{ 'is-invalid': submited && fc['name'].errors }" type="text"
+        class="form-control" id="name" name="name">
+      <div *ngIf="submited && fc['name'].errors" class="invalid-feedback">
+        <div *ngIf="fc['name'].errors?.['required']">Por favor, ingrese el nombre de la película.</div>
+      </div>
     </div>
 
     <div class="mb-3">
-
-
       <div class="mb-3">
         <label for="url" class="form-label">Url</label>
-        <input required [(ngModel)]="url" type="text" class="form-control" name="url" id="url" aria-describedby="emailHelp">
+        <input [(ngModel)]="url" [ngClass]="{ 'is-invalid': submited && fc['url'].errors }" formControlName="url"
+          type="text" class="form-control" name="url" id="url">
+        <div *ngIf="submited && fc['url'].errors" class="invalid-feedback">
+          <div *ngIf="fc['url'].errors?.['required']">Por favor, ingrese una url.</div>
+
+        </div>
       </div>
       <div>
         <img src={{url}} alt="">
       </div>
-
     </div>
 
     <div class="mb-3">
+
       <label for="description" class="form-label">Descripción</label>
+      <textarea formControlName="description" [ngClass]="{ 'is-invalid': submited && fc['description'].errors }"
+        class="form-control" id="description" rows="3" name="description"></textarea>
 
-
-      <textarea  required [(ngModel)]="movie.description" class="form-control" id="description" rows="3"
-        name="description"></textarea>
-
-
+      <div *ngIf="submited && fc['description'].errors" class="invalid-feedback">
+        <div *ngIf="fc['description'].errors?.['required']">Por favor, ingrese una descripcion.</div>
+        <div *ngIf="fc['description'].errors?.['minlength']">Por favor, ingrese una descripción de almenos 50
+          caracteres.</div>
+      </div>
     </div>
 
     <div class="mb-3">
       <div>
         <label for="genres" class="form-label">Generos</label>
-        <select required class="form-control" id="genres" name="genres" multiple>
-          <option *ngFor="let genre of genres" [value]="genre.id" (dblclick)="selectGenre(genre)">{{genre.name}}
+        <select (change)="changeSelect('genres')" [ngClass]="{ 'is-invalid': submited && fc['genres'].errors }"
+          formControlName="genres" class="form-control" id="genres" name="genres" multiple>
+          <option *ngFor="let genre of genres" [ngValue]="genre.id">{{genre.name}}
           </option>
         </select>
+        <div *ngIf="submited && fc['genres'].errors" class="invalid-feedback">
+          <div *ngIf="fc['genres'].errors?.['required']">Debe seleccionar almenos un genero.</div>
+        </div>
       </div>
 
       <div>
@@ -50,10 +64,14 @@
     <div class="mb-3">
       <div>
         <label for="actors" class="form-label">Actores</label>
-        <select required class="form-control" id="actors" name="actors" multiple>
-          <option *ngFor="let actor of actors" [value]="actor.id" (dblclick)="selectActor(actor)">{{actor.names}}
+        <select (change)="changeSelect('actors')" [ngClass]="{ 'is-invalid': submited && fc['actors'].errors }"
+          formControlName="actors" class="form-control" id="actors" name="actors" multiple>
+          <option *ngFor="let actor of actors" [ngValue]="actor.id">{{actor.names}}
           </option>
         </select>
+        <div *ngIf="submited && fc['actors'].errors" class="invalid-feedback">
+          <div *ngIf="fc['actors'].errors?.['required']">Debe seleccionar almenos un actor.</div>
+        </div>
       </div>
 
       <div class="container d-flex mt-3 ms-0 p-0">
@@ -63,19 +81,24 @@
 
       <div class="mb-3">
         <label for="director" class="form-label">Director</label>
-        <select required class="form-select" id="director" name="director" name="director" [(ngModel)]="movie.director">
-          <option *ngFor="let director of directors" [ngValue]="director">{{director.names}}
+        <select (change)="changeSelect('director')" [ngClass]="{ 'is-invalid': submited && fc['director'].errors}"
+          formControlName="director" class="form-select" id="director" name="director" name="director">
+          <option *ngFor="let director of directors" [ngValue]="director.id">{{director.names}}
           </option>
         </select>
-        <div class="container d-flex mt-3 ms-0 p-0">
-          <p *ngIf="movie?.director" class="btn btn-outline-info me-3">{{movie.director.names}}</p>
+        <div *ngIf="submited && fc['director'].errors" class="invalid-feedback">
+          <div *ngIf="fc['director'].errors?.['required']">Debe seleccionar un director.</div>
         </div>
-       
+        <div class="container d-flex mt-3 ms-0 p-0">
+          <p *ngIf="movie?.director && !isEmpty()" class="btn btn-outline-info me-3">{{movie.director.names}}</p>
+        </div>
+
       </div>
 
     </div>
 
-    <button [disabled]="f.invalid" type="submit" class="btn btn-primary">Confirmar</button>
+    <button type="submit" class="btn btn-primary">Confirmar</button>
+
   </form>
 
 </div>
